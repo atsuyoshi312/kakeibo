@@ -18,6 +18,9 @@ date = st.date_input("日付を選択してください", datetime.today())
 category = st.selectbox("カテゴリを選択してください", categories)
 amount = st.number_input("金額を入力してください", min_value=1)
 
+# 日付をdatetime形式に変換
+date = pd.to_datetime(date)
+
 # トランザクションをデータフレームに追加
 if st.button("追加"):
     new_entry = {"日付": date, "カテゴリ": category, "金額": amount}
@@ -43,4 +46,3 @@ st.line_chart(monthly_total)
 if st.button("データを保存"):
     data.to_csv("household_budget.csv", index=False)
     st.success("データが保存されました。")
-
